@@ -24,8 +24,7 @@ answer_no = ["no", "n"]
 def get_recomend_restlan(restlan_list: list):
     sorted_list = sorted(restlan_list, key=lambda x: x["Count"])
     if len(sorted_list) > 0:
-        recomend_restlan_dict = sorted_list[0]
-        return recomend_restlan_dict["Name"]
+        return sorted_list
     return None
 
 
@@ -54,13 +53,21 @@ with open(csv_file_path, "r") as csv_file:
 
 
 # おすすめがあれば表示
-recomend_restlan_name = get_recomend_restlan(csv_file_list)
-if recomend_restlan_name:
-    print(f"おすすめのレストラン{recomend_restlan_name}があります。お好きですか？")
-    while True:
+recomend_restlan_dict = get_recomend_restlan(csv_file_list)
+if recomend_restlan_dict:
+    #    while True:
+    #        answer = input()
+    #        if answer.lower() in answer_yes or answer.lower() in answer_no:
+    #            break
+    #        else:
+    #            cprint("Yes/Noで入力してください。", "red")
+    for row in recomend_restlan_dict:
+        print(f"おすすめのレストラン{row['Name']}があります。お好きですか？")
         answer = input()
-        if answer.lower() in answer_yes or answer.lower() in answer_no:
+        if answer.lower() in answer_yes:
             break
+        elif answer.lower() in answer_no:
+            continue
         else:
             cprint("Yes/Noで入力してください。", "red")
 
