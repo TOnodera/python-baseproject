@@ -6,21 +6,21 @@ class Robot{
     -user
     -store
     +ask_name()
-    +ask_like_restlan()
-    +propose_restlan()
+    +ask_like_restaurant()
+    +propose_restaurant()
 }
 
 class Store{
     +create_sotre()
     +read_rows()
-    +update_store(restlan_name: str)
-    +create_row(restlan_name: str)
+    +update_store(restaurant_name: str)
+    +create_row(restaurant_name: str)
     +store_is_exists()
 }
 
 class User{
     -name
-    -favorite_restlan
+    -favorite_restaurant
 }
 
 Main --> Robot

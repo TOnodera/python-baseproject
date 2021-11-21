@@ -21,21 +21,21 @@ class Robot:
                 break
             cprint("名前を入力してください。", "red")
 
-    def ask_restlan(self):
+    def ask_restaurant(self):
         # レストラン名を取得
-        restlan_name = None
+        restaurant_name = None
         cprint(f"{self.user.name}さん。どこのレストランが好きですか？", "green")
         while True:
-            restlan_name = input().capitalize()
-            if restlan_name:
-                self.user.favorite_restlan = restlan_name
+            restaurant_name = input().capitalize()
+            if restaurant_name:
+                self.user.favorite_restaurant = restaurant_name
                 self.store.increament(self.user)
                 break
             cprint("レストラン名を入力してください。", "red")
 
-    def propose_restlan(self):
+    def propose_restaurant(self):
         # オススメのレストランがあれば提案する
-        for recomend in self.get_recomend_restlan():
+        for recomend in self.get_recomend_restaurant():
             cprint(f"オススメのレストラン%sがあります。" % recomend["Name"], "green")
             cprint("お好きですか？(Yes/No): ", "green")
             answer = input()
@@ -49,9 +49,9 @@ class Robot:
     def bye(self):
         cprint(f"{self.user.name}さん。ありがとうございました。良い一日を。")
 
-    def get_recomend_restlan(self) -> List:
-        restlan_list = self.store.read_rows()
-        sorted_list = sorted(restlan_list, key=lambda x: x["Count"], reverse=True)
+    def get_recomend_restaurant(self) -> List:
+        restaurant_list = self.store.read_rows()
+        sorted_list = sorted(restaurant_list, key=lambda x: x["Count"], reverse=True)
         if len(sorted_list) > 0:
             return sorted_list
         return []

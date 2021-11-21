@@ -1,20 +1,20 @@
 class User:
     def __init__(self):
         self.__name = None
-        self.__favorite_restlan = None
+        self.__favorite_restaurant = None
 
     @property
     def name(self):
         return self.__name
 
     @property
-    def favorite_restlan(self):
-        return self.__favorite_restlan
+    def favorite_restaurant(self):
+        return self.__favorite_restaurant
 
     @name.setter
     def name(self, name: str):
         self.__name = name
 
-    @favorite_restlan.setter
-    def favorite_restlan(self, favorite_restlan: str):
-        self.__favorite_restlan = favorite_restlan
+    @favorite_restaurant.setter
+    def favorite_restaurant(self, favorite_restaurant: str):
+        self.__favorite_restaurant = favorite_restaurant

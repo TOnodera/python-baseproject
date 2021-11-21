@@ -38,22 +38,22 @@ class Store:
         """
         レストラン名がCSVに存在する場合はCountを+1して保存。
         Params:
-            restlan_name: レストラン名
+            restaurant_name: レストラン名
 
         """
         # CSVのデータをリストに読み込む
         rows = self.read_rows()
-        if any(user.favorite_restlan == row["Name"] for row in rows):
-            self.update_row(user.favorite_restlan)
+        if any(user.favorite_restaurant == row["Name"] for row in rows):
+            self.update_row(user.favorite_restaurant)
         else:
-            self.create_row(user.favorite_restlan)
+            self.create_row(user.favorite_restaurant)
 
-    def create_row(self, restlan_name: str):
+    def create_row(self, restaurant_name: str):
         with open(self.csv_file_path, "a") as csv_file:
             writer = csv.DictWriter(csv_file, fieldnames=self.fieldnames)
-            writer.writerow({"Name": restlan_name.capitalize(), "Count": 1})
+            writer.writerow({"Name": restaurant_name.capitalize(), "Count": 1})
 
-    def update_row(self, restlan_name: str):
+    def update_row(self, restaurant_name: str):
         all_rows = []
         with open(self.csv_file_path, "r") as csv_file:
             reader = csv.DictReader(csv_file, fieldnames=self.fieldnames)
@@ -62,6 +62,6 @@ class Store:
         with open(self.csv_file_path, "w") as csv_file:
             writer = csv.DictWriter(csv_file, fieldnames=self.fieldnames)
             for row in all_rows:
-                if restlan_name.capitalize() == row["Name"]:
+                if restaurant_name.capitalize() == row["Name"]:
                     row.update({"Count": int(row["Count"]) + 1})
                 writer.writerow(row)

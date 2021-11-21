@@ -7,10 +7,10 @@ robot = Robot()
 robot.ask_name()
 
 # オススメのレストランがあれば提案する
-robot.propose_restlan()
+robot.propose_restaurant()
 
 # 好きなレストランを尋ねる
-robot.ask_restlan()
+robot.ask_restaurant()
 
 # 終了文出力
 robot.bye()
