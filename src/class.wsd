@@ -1,0 +1,30 @@
+@startuml
+
+class Main
+
+class Robot{
+    -user
+    -store
+    +ask_name()
+    +ask_like_restlan()
+    +propose_restlan()
+}
+
+class Store{
+    +create_sotre()
+    +read_rows()
+    +update_store(restlan_name: str)
+    +create_row(restlan_name: str)
+    +store_is_exists()
+}
+
+class User{
+    -name
+    -favorite_restlan
+}
+
+Main --> Robot
+Robot --> Store
+
+
+@enduml
