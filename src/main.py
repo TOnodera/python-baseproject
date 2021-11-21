@@ -31,24 +31,16 @@ while True:
     cprint("レストラン名を入力してください。", "red")
 
 
-# ファイルが存在する場合は読み込む
+# ファイルが存在しない場合はファイルを作成する
+if not pathlib.Path.exists(csv_file_path):
+    with open(csv_file_path, "w") as csv_file:
+        writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
+        writer.writeheader()
 
 # CSVファイルが存在する場合はファイルを読み込んでデータを取得する
-if pathlib.Path.exists(csv_file_path):
-    with open(csv_file_path, "r") as csv_file:
-        reader = csv.DictReader(csv_file, fieldnames=fieldnames)
-        for row in reader:
-            if count := int(row.get("Count")) > most_popular_restlan_count:
-                most_popular_restlan = row.get("Name")
-                most_popular_restlan_count = count
+with open(csv_file_path, "r") as csv_file:
+    reader = csv.DictReader(csv_file, fieldnames=fieldnames)
 
-# CSVファイルへの書き込み
-with open(csv_file_path, "a+") as csv_file:
-    writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
-    # 空の場合はヘッダー追加
-    if utils.fils_is_empty(csv_file_path):
-        writer.writeheader()
-    writer.writerow({"Name"})
 
 cprint(f"{name}さん。ありがとうございました。")
 cprint("良い一日を！さようなら。")
