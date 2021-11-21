@@ -1,4 +1,3 @@
-from termcolor import cprint
 from robot import Robot
 
 # ロボットインスタンス
