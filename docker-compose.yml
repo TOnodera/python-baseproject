@@ -4,3 +4,7 @@ services:
     build: ./docker/python
     volumes:
       - ./:/home/python/app
+  memcached:
+    build: ./docker/memcached
+    ports:
+      - 11211:11211
