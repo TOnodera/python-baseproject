@@ -1,5 +1,4 @@
-from os import stat_result
-import threading
+import multiprocessing
 import time
 
 
@@ -21,7 +20,9 @@ def loop():
 
 
 if __name__ == "__main__":
-    t1 = threading.Thread(target=loop)
-    t2 = threading.Thread(target=loop)
+    t1 = multiprocessing.Process(target=loop)
+    t2 = multiprocessing.Process(target=loop)
     t1.start()
     t2.start()
+    t1.join()
+    t2.join()
