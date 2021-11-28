@@ -3,26 +3,21 @@ import time
 
 
 def measurement(func):
-    def wrapper():
+    def wrapper(*args, **kwargs):
         start = time.time()
-        func()
+        func(*args, **kwargs)
         print("実行時間: ", time.time() - start)
 
     return wrapper
 
 
-@measurement
-def loop():
-    n = 10 ** 4
+def loop(n):
     for i in range(n):
         for j in range(n):
             pass
 
 
 if __name__ == "__main__":
-    t1 = multiprocessing.Process(target=loop)
-    t2 = multiprocessing.Process(target=loop)
-    t1.start()
-    t2.start()
-    t1.join()
-    t2.join()
+    proccess_num = 2
+    with multiprocessing.Pool(proccess_num) as p:
+        p.map(loop, [4, 4])
